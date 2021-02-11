@@ -1,0 +1,9 @@
+[Interface]
+Address = {{ vpn_client_internal_address }}/24
+PrivateKey = {{ vpn_client_private_key }}
+
+# Allow access from clients
+[Peer]
+PublicKey = {{ vpn_server_public_key }}
+Endpoint = {{ vpn_server_addr }}:{{ vpn_server_port }}
+AllowedIPs = {% for item in cidr_allow_list %}{{item}}, {% endfor %}

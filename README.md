@@ -1,38 +1,28 @@
-Role Name
-=========
+# sensor-vpn
+ORTSOC Sensor Role: VPN Client
 
-A brief description of the role goes here.
+## Variables
+* `vpn_client_internal_addr`: self-chosen address for the sensor in the internal wireguard network
+* `vpn_client_private_key`: the server address for the client in base64, base generated with `wg genkey`
+* `vpn_server_addr`: the normally accessible server IP that can be connected to.
+* `vpn_server_port`: the port to connect to the server over.
+* `vpn_server_public_key`: the public key for the server.
+* `cidr_allow_list`: a list of items in CIDR format that gives access to certain items in the VPN IP space.
 
-Requirements
-------------
+## Example Config
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+```yml
+# local client config
+vpn_client_internal_addr: 11.11.11.5
+vpn_client_private_key: aaaaaaaaaaaaaa=
 
-Role Variables
---------------
+# config for the server to connect to
+vpn_server_addr: my.server
+vpn_server_public_key: bbbbbbbbbbbbb=
+vpn_server_port: 51820
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
-Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+# list of CIDR items that we will try to connect to over the VPN IP space.
+cidr_allow_list:
+  - 11.11.11.0/24
+  - 11.11.10.1/32
+```

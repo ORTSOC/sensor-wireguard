@@ -1,2 +1,10 @@
 ---
 # handlers file for sensor-wireguard
+
+# start/restart wireguard
+- name: restart wireguard
+  become: yes
+  service: 
+    name: wg-quick@wg-client
+    enabled: yes
+    state: restarted
