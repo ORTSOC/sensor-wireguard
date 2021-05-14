@@ -2,7 +2,7 @@
 ORTSOC Sensor Role: VPN Client
 
 ## Variables
-* `vpn_client_internal_addr`: self-chosen address for the sensor in the internal wireguard network
+* `vpn_client_internal_address`: self-chosen address for the sensor in the internal wireguard network
 * `vpn_client_private_key`: the server address for the client in base64, base generated with `wg genkey`
 * `vpn_server_addr`: the normally accessible server IP that can be connected to.
 * `vpn_server_port`: the port to connect to the server over.
@@ -13,7 +13,7 @@ ORTSOC Sensor Role: VPN Client
 
 ```yml
 # local client config
-vpn_client_internal_addr: 11.11.11.5
+vpn_client_internal_address: 11.11.11.5
 vpn_client_private_key: aaaaaaaaaaaaaa=
 
 # config for the server to connect to
