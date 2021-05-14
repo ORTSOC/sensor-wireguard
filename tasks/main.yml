@@ -6,26 +6,22 @@
     state: present
     update_cache: yes
 
-- name: install wireguard
-  become: yes
+- name: install wireguard and dependencies
   apt:
-    name: wireguard
+    name: ["wireguard", "linux-headers-{{ ansible_kernel }}"]
 
 # enable the wireguard kernel module so we can enable logging for it.
 - name: enable wireguard kernel module
-  become: yes
   modprobe:
     name: wireguard
     state: present  
 
 # runs every time, this is okay.
 - name: enable wireguard logging
-  become: yes
   shell: echo 'module wireguard +p' > /sys/kernel/debug/dynamic_debug/control
 
 # generate config from vars
 - name: load config
-  become: yes
   template:
     src: wg-client.conf.j2
     dest: /etc/wireguard/wg-client.conf
