@@ -1,5 +1,14 @@
-# sensor-vpn
-ORTSOC Sensor Role: VPN Client
+ansible-vpn-client
+=========
+
+Deploys a Wireguard VPN client, to connect to a Wireguard VPN server.
+
+Requirements
+------------
+
+- Debian 10
+- sudo
+- ssh
 
 ## Variables
 * `vpn_client_internal_address`: self-chosen address for the sensor in the internal wireguard network
@@ -26,3 +35,13 @@ cidr_allow_list:
   - 11.11.11.0/24
   - 11.11.10.1/32
 ```
+
+License
+-------
+
+GPL3
+
+Author Information
+------------------
+
+ORTSOC
